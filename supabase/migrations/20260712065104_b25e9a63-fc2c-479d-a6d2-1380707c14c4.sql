@@ -1,0 +1,2 @@
+ALTER TABLE public.expenses ADD COLUMN IF NOT EXISTS slip_urls text[] NOT NULL DEFAULT '{}';
+UPDATE public.expenses SET slip_urls = ARRAY[slip_url] WHERE slip_url IS NOT NULL AND (slip_urls IS NULL OR array_length(slip_urls,1) IS NULL);
